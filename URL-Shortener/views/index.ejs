@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>URL-Shortener</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <h1>URL Shortener</h1>
+
+      <form action="/" method="post">
+        <div class="input-group">
+          <input type="url" name="url" id="url" required placeholder=" " />
+          <label for="url">Enter URL</label>
+        </div>
+
+        <div class="input-group">
+          <input
+            type="text"
+            name="shortCode"
+            id="shortCode"
+            required
+            placeholder=" " />
+          <label for="shortCode">Enter Short Code</label>
+        </div>
+
+        <button type="submit">Shorten URL</button>
+      </form>
+
+      <h2>Shortened URLs</h2>
+      <!-- <ul {{shortened_urls}}></ul> -->
+       <ul>
+         <% links.forEach((link) => { %>
+          <% const truncatedUrl = link.url.length > 20 
+              ? link.url.substring(0, 20) + "..." 
+              : link.url; %>
+
+          <li>
+            <a href="/<%= link.short_code %>" target="_blank">
+              <%= host %>/<%= link.short_code %>
+            </a>
+            - <%= truncatedUrl %>
+          </li>
+        <% }) %>
+       </ul>
+    </div>
+  </body>
+</html>
